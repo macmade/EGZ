@@ -75,7 +75,7 @@ DEPS_egz            = args btree compress debug error expand file help md5 symbo
 # Dependancies for the executables (libraries)
 #-------------------------------------------------------------------------------
 
-DEPS_LIB_egz        = libdebug libprogressbar
+DEPS_LIB_egz        = libdebug libio libprogressbar
 
 #-------------------------------------------------------------------------------
 # Dependancies for the executables (system libraries)

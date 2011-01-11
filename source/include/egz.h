@@ -43,11 +43,18 @@
 extern "C" {
 #endif
 
-/* Local includes */
+/* C standard includes */
 #include "stdc/bool.h"
 #include "stdc/c99.h"
 #include "stdc/posix.h"
 #include "stdc/std-extras/math.h"
+    
+/* Local library includes */
+#include "libdebug.h"
+#include "libio.h"
+#include "libprogressbar.h"
+
+/* Local includes */
 #include "constants.h"
 #include "macros.h"
 #include "types.h"
@@ -61,10 +68,6 @@ extern "C" {
 #include "help.h"
 #include "md5.h"
 #include "symbols.h"
-
-/* Local library includes */
-#include "libdebug.h"
-#include "libprogressbar.h"
 
 #ifdef __cplusplus
 }
