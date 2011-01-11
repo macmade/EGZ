@@ -335,11 +335,6 @@ egz_status egz_rebuild_tree( egz_symbol ** tree_ptr, egz_symbol * symbols, unsig
             
             DEBUG( "Processing character 0x%02X (%c) - %u bits", s->character, ( isprint( s->character ) && s->character != 0x20 ) ? s->character : '.', s->bits );
             
-            if( s->character == 255 )
-            {
-                DEBUG( "OKOKOK" );
-            }
-            
             for( k = bits - 1; k > -1; k-- )
             {
                 if( code & ( 1 << k ) )
@@ -393,6 +388,31 @@ egz_status egz_rebuild_tree( egz_symbol ** tree_ptr, egz_symbol * symbols, unsig
         }
         
         branch = tree;
+    }
+    
+    for( i = 0; i < count - 1; i++ )
+    {
+        if( tree[ i ].left == NULL )
+        {
+            if( libdebug_is_enabled() == true )
+            {
+                DEBUG( "NULL reference on node #%u left child detected", tree[ i ].id );
+                egz_print_node( &( tree[ i ] ) );
+            }
+            
+            return EGZ_ERROR_INVALID_TREE;
+        }
+        else if( tree[ i ].right == NULL )
+        {
+            if( libdebug_is_enabled() == true )
+            {
+                DEBUG( "NULL reference on node #%u right child detected", tree[ i ].id );
+                egz_print_node( &( tree[ i ] ) );
+            }
+            
+            return EGZ_ERROR_INVALID_TREE;
+        }
+            
     }
     
     if( libdebug_is_enabled() == true )

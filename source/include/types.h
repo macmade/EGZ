@@ -51,6 +51,7 @@ extern "C" {
         EGZ_ERROR_INVALID_FORMAT    = 0x003,
         EGZ_ERROR_INVALID_CHECKSUM  = 0x004,
         EGZ_ERROR_ABORT             = 0x005,
+        EGZ_ERROR_INVALID_TREE      = 0x006,
         EGZ_ERROR_UNKNOWN           = 0x666
     }
     egz_status;

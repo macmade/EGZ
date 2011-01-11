@@ -51,6 +51,7 @@ char * egz_error_str( egz_status code )
         case EGZ_ERROR_INVALID_FORMAT:      return "file is not an EGZ file";
         case EGZ_ERROR_INVALID_CHECKSUM:    return "invalid file MD5 checksum";
         case EGZ_ERROR_ABORT:               return "user abort";
+        case EGZ_ERROR_INVALID_TREE:        return "invalid binary tree";
         default:                            return "unknown error";
     }
 }
