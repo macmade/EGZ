@@ -40,23 +40,35 @@
 #pragma once
 
 #include <stdarg.h>
+#include <stdlib.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <sys/types.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+    
+    /* Definition of the boolean datatype if not enabled */
+#ifndef __bool_true_false_are_defined
+#define bool                            _Bool
+#define true                            1
+#define false                           0
+#define __bool_true_false_are_defined   1
+#endif
+    
 #ifdef stdin
 #undef stdin
 #endif
-
+    
 #ifdef stdout
 #undef stdout
 #endif
-
+    
 #ifdef stderr
 #undef stderr
 #endif
-
+    
 #define FILE                                struct libio_file
 #define stdin                               &( libio_stdin )
 #define stdout                              &( libio_stdout )
@@ -90,11 +102,11 @@ extern "C" {
      * Mode may be one of the following for text files:
      * 
      *      - "r"   text reading
-     *      - "w" text writing
-     *      - "a" text append
-     *      - "r+"text update (reading and writing)
-     *      - "w+" text update discarding previous content (if any)
-     *      - "a+" text append, reading, and writing at end
+     *      - "w"   text writing
+     *      - "a"   text append
+     *      - "r+"  text update (reading and writing)
+     *      - "w+"  text update discarding previous content (if any)
+     *      - "a+"  text append, reading, and writing at end
      * 
      * or one of those strings with b included (after the first character),
      * for binary files.
@@ -247,6 +259,191 @@ extern "C" {
      * Returns non-zero if error indicator is set for stream stream.
      */
     int libio_ferror( struct libio_file * stream );
+    
+    /*!
+     * Gets the filename associated to the stream-
+     */
+    const char * fname( struct libio_file * stream );
+    
+    /*!
+     * Gets the stream's open mode
+     */
+    const char * fmode( struct libio_file * stream );
+    
+    /*!
+     * Returns true if the file is readable
+     */
+    bool freadable( struct libio_file * stream );
+    
+    /*!
+     * Returns true if the file is writeable
+     */
+    bool fwriteable( struct libio_file * stream );
+    
+    /*!
+     * Copies a file to another destination.
+     */
+    bool fcopy( char * name, char * new_name );
+    
+    /*!
+     * Gets the next bit in the stream
+     */
+    int fgetbit( struct libio_file * stream );
+    
+    /*!
+     * Writes a bit in the stream
+     */
+    int fputbit( struct libio_file * stream, uint8_t bit );
+    
+    /*!
+     * Gets bits from the stream
+     */
+    int fgetbits( struct libio_file * stream, unsigned int count );
+    
+    /*!
+     * Writes bits to the stream
+     */
+    int fputbits( struct libio_file * stream, uint64_t bits, unsigned int count );
+    
+    /*!
+     * 
+     */
+    dev_t fdevid( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    ino_t finoid( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    nlink_t fnlink( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    uid_t fuid( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    gid_t fgid( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    size_t fsize( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    double fhsize( struct libio_file * stream, char unit[] );
+    
+    /*!
+     * 
+     */
+    time_t fatime( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    time_t fmtime( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    time_t fctime( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    bool fblock( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    bool fchar( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    bool ffifo( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    bool freg( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    bool fdir( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    bool flink( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    bool fsock( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    bool fuser_r( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    bool fuser_w( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    bool fuser_x( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    bool fgroup_r( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    bool fgroup_w( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    bool fgroup_x( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    bool fother_r( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    bool fother_w( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    bool fother_x( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    bool fsuid( struct libio_file * stream );
+    
+    /*!
+     * 
+     */
+    bool fsgid( struct libio_file * stream );
     
 #ifdef __cplusplus
 }
