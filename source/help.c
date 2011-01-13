@@ -63,7 +63,7 @@ void egz_print_usage( char * name )
     printf
     (
         "\n"
-        "EGZ - Huffman compression utility (%s)\n"
+        "EGZ - eosgarden compression utility (%s)\n"
         "Copyright (c) 2011 eosgarden - Jean-David Gadina <macmade@eosgarden.com>\n"
         "\n"
         "Usage: %s [OPTIONS] [SOURCE_FILE]\n"
