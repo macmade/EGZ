@@ -57,7 +57,7 @@ egz_status egz_compress( FILE * source, FILE * destination, bool force )
     egz_symbol *  tree;
     egz_symbol ** symbols;
     egz_status    status;
-    char              md5[ MD5_DIGEST_LENGTH * 2 + 1 ];
+    char          md5[ MD5_DIGEST_LENGTH * 2 + 1 ];
     
     memset( md5, 0, MD5_DIGEST_LENGTH * 2 + 1 );
     
