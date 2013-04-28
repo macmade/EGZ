@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, Jean-David Gadina <macmade@eosgarden.com>
+ * Copyright (c) 2010, Jean-David Gadina - www.xs-labs.com
  * Distributed under the Boost Software License, Version 1.0.
  * 
  * Boost Software License - Version 1.0 - August 17th, 2003
@@ -31,7 +31,7 @@
 
 /*!
  * @file        error.c
- * @copyright   eosgarden 2011 - Jean-David Gadina <macmade@eosgarden.com>
+ * @copyright   (c) 2011 - Jean-David Gadina - www.xs-labs.com
  * @abstract    Error functions
  */
 
@@ -63,8 +63,8 @@ void egz_print_usage( char * name )
     printf
     (
         "\n"
-        "EGZ - eosgarden compression utility (%s)\n"
-        "Copyright (c) 2011 eosgarden - Jean-David Gadina <macmade@eosgarden.com>\n"
+        "EGZ - Compression utility (%s)\n"
+        "Copyright (c) 2011 XS-Labs - Jean-David Gadina - www.xs-labs.co\n"
         "\n"
         "Usage: %s [OPTIONS] [SOURCE_FILE]\n"
         "\n"
