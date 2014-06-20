@@ -1,10 +1,8 @@
 #/bin/bash/
 
-rm *.txt
-rm *.bin
-rm *.egz
-
-clear
+rm -f *.txt
+rm -f *.bin
+rm -f *.egz
 
 if [ "$2" ] && [ "$2" -gt 0 ]; then
     

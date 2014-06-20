@@ -40,8 +40,6 @@
 
 /* Private variables */
 static unsigned int __percent = 0;
-static char         __last_md5[ MD5_DIGEST_LENGTH * 2 + 1 ];
-static FILE       * __last_fp;
 
 /*!
  * 
@@ -52,7 +50,7 @@ void egz_file_md5_checksum( FILE * fp, char * hash )
     size_t              length;
     unsigned char       digest[ MD5_DIGEST_LENGTH ];
     char                tmp[ EGZ_READ_BUFFER_LENGTH ];
-    char                hex[ 3 ];
+    char                hex[ 3 ] = { 0, 0, 0 };
     long                offset;
     unsigned int        i;
     unsigned long       size;
@@ -60,13 +58,8 @@ void egz_file_md5_checksum( FILE * fp, char * hash )
     unsigned long       read_op;
     libprogressbar_args args;
     
-    if( fp == __last_fp )
-    {
-        strcpy( hash, __last_md5 );
-        return;
-    }
+    memset( hash, 0, MD5_DIGEST_LENGTH * 2 + 1 );
     
-    __last_fp = fp;
     __percent = 0;
     size      = egz_getfilesize( fp );
     read_ops  = ceil( ( double )size / ( double )EGZ_READ_BUFFER_LENGTH );
@@ -102,8 +95,6 @@ void egz_file_md5_checksum( FILE * fp, char * hash )
     
     MD5_Final( digest, &ctx );
     
-    hex[ 3 ] = 0;
-    
     for( i = 0; i < MD5_DIGEST_LENGTH; i++ )
     {
         sprintf( hex, "%02x", digest[ i ] );
@@ -112,8 +103,6 @@ void egz_file_md5_checksum( FILE * fp, char * hash )
     }
     
     hash -= MD5_DIGEST_LENGTH * 2;
-    
-    strcpy( __last_md5, hash );
     
     fseek( fp, offset, SEEK_SET );
     
